@@ -406,14 +406,28 @@
             <script>t_onFuncLoad('t396_initialScale',function() {t396_initialScale('870481644');});t_onReady(function() {t_onFuncLoad('t396_init',function() {t396_init('870481644');});});</script> <!-- /T396 --> 
          </div>
          <a name="faq" style="font-size:0;"></a> 
-         <div id="rec870483409" class="r t-rec" style=" " data-animationappear="off" data-record-type="131">
+         <div id="rec870483409" class="r t-rec" data-animationappear="off" data-record-type="131">
             <!-- T123 --> 
             <div class="t123">
                <div class="t-container_100 ">
                   <div class="t-width t-width_100 ">
                      <!-- nominify begin --> <!--Анимация рукописного текста--> <!--https://mt-webdesign.ru/handwritten--> <!--Библиотеки для триггера--> 
-                      <script src="js/gsap.min.js"></script> 
-                      <script src="js/ScrollTrigger.min.js"></script> 
+                     <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                        const observer = new IntersectionObserver(entries => {
+                            entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                setTimeout(() => {
+                                document.querySelector('.text-line').classList.add('text-line-anim');
+                                }, 50);
+                            }
+                            });
+                        }, {threshold: 0.1});
+                        
+                        const triggerElement = document.querySelector('.trigger');
+                        if (triggerElement) observer.observe(triggerElement);
+                        });
+                        </script> 
                      <style>
                         .text-line .hand-drawing-svg-1 {
                         opacity:0;
@@ -434,86 +448,7 @@
                         }
                         }
                      </style>
-                     <script>
-                        ScrollTrigger.create({
-                        trigger: ".trigger", /*класс триггера для старта анимации*/
-                        markers: false,
-                        start: "top center",
-                        end: "top top",
-                        onEnter: () => setTimeout(() => myfunction_1(), 50), /*задержка перед анимацией*/
-                        // onLeaveBack: () => setTimeout(() => myfunction_2(), 200),
-                        });
-                        function myfunction_1() {
-                        $('.text-line').addClass("text-line-anim"); /*класс текста с анимацией*/
-                        };
-                        // function myfunction_2() {
-                        // $('.text-line').removeClass("text-line-anim");
-                        // };
-                     </script> <!-- nominify end --> 
-                  </div>
-               </div>
-            </div>
-         </div>
-         <div id="rec870484883" class="r t-rec" style=" " data-animationappear="off" data-record-type="131">
-            <!-- T123 --> 
-            <div class="t123">
-               <div class="t-container_100 ">
-                  <div class="t-width t-width_100 ">
-                     <!-- nominify begin --> <script>
-                        var settings = {
-                            mobile: true,
-                            mobileDefault: true,
-                            tablet: true,
-                            pc: true,
-                            ultra: true
-                        };
-                        
-                        $(document).ready(function() {
-                            var blockIds = ['#rec870484455'];
-                            
-                            adjustScreenZoom1(blockIds); 
-                            
-                            $(window).resize(function() {
-                                adjustScreenZoom1(blockIds); 
-                            });
-                        });
-                        
-                        function adjustScreenZoom1(blockIds) {
-                            var screenWidth = $(window).width();
-                            var zoomLevel = null; // Начальная установка в null
-                            
-                            console.log(screenWidth)
-                        
-                            // Проверка на соответствие ширине экрана и включен ли соответствующий флаг
-                            if (screenWidth > 0 && screenWidth <= 320 && settings.mobile) {
-                                zoomLevel = screenWidth / 320;
-                                console.log('применился на 320')
-                            } else if (screenWidth > 320 && screenWidth <= 480 && settings.mobileDefault) {
-                                zoomLevel = screenWidth / 480; 
-                                console.log('применился на 480')
-                            } else if (screenWidth > 480 && screenWidth <= 768 && settings.tablet) {
-                                zoomLevel = screenWidth / 768; 
-                                console.log('применился на 768')
-                            } else if (screenWidth > 768 && screenWidth <= 1190 && settings.tablet) {
-                                zoomLevel = screenWidth / 600; 
-                                console.log('применился на 768')
-                            } else if (screenWidth > 1190 && screenWidth <= 1200 && settings.pc) {
-                                zoomLevel = screenWidth / 1200; 
-                                console.log('применился на 1200')
-                            } else if (screenWidth > 1200 && settings.ultra) {
-                                 zoomLevel = screenWidth / 1200; 
-                            }
-                        
-                            if (zoomLevel !== null) { // Применяем зум только если он определен
-                                blockIds.forEach(function(blockId) {
-                                    $(blockId).css('zoom', zoomLevel);
-                                    console.log(`Applied zoom: screenWidth=${screenWidth}, zoomLevel=${zoomLevel}`);
-                                });
-                            } else {
-                                console.log(`Zoom not applied: screenWidth=${screenWidth}`);
-                            }
-                        }
-                     </script> <!-- nominify end --> 
+                     
                   </div>
                </div>
             </div>
